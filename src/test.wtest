@@ -1,0 +1,27 @@
+import universidad.*
+import materias.*
+
+describe "universidad" {
+	
+	var estudiante1 = new Estudiante(materiasAprobadas = ["orga","intro"],
+		                             carrera = ["programacion"],
+		                             cantidadDeCreditos = 120 )
+		                             
+    var orga = new Materia(curso = [],
+    					   materiasCorrelativas = [],
+    					   carreraALaQuePertenece = "programacion",
+    					   creditos = 10,
+    					   anioQuePertenece = 1 )
+ 
+    var intro = new Materia(curso = [],
+    					    materiasCorrelativas = [],
+    					    carreraALaQuePertenece = "programacion",
+    					    creditos = 10,
+    					    anioQuePertenece = 1 )
+    
+    
+test "testX" {
+	assert.that()
+}
+
+}
