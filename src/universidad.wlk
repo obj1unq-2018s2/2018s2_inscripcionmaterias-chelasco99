@@ -1,27 +1,23 @@
 class Estudiante {
-	var property carrera = []
+	var property carreras = []
 	var property materiasAprobadas = []
 	var property cantidadDeCreditos = 0
-	
-	method puedeCursarMateria(unaMateria) {
-		return not self.aproboMateria(unaMateria) and unaMateria.cumpleConLosRequisitos() 		
-	}
-	
-	method aproboMateria(unaMateria) {
-		return materiasAprobadas.any { materia => materia == unaMateria }
-	}
-	
-	method correspondeACarrera(unaMateria) {				
-	} 
-	
-	method registrarMateriaAprobada(unaMateria) {
-		return materiasAprobadas + unaMateria
-		
-	}
-}
 
-
-class EstudianteAproboMateriaConNota {
-	var property materia
-	var property nota = 0
-}
+   method puedeCursarMateria(materia) { return 
+      self.esDeSuCarrera(materia) and not self.aprobo(materia) and not self.estaIncripto(materia) and materia.prerrequisitos(self)
+   }
+   
+   method esDeSuCarrera(materia) {
+   	 return carreras.contains(materia.carrera())
+   }
+   
+   method aprobo(materia) {
+   	return materiasAprobadas.contains(materia)
+   }
+   
+   method estaIncripto(materia) {
+   	 return materia.curso().contains(self)
+   }
+   
+}	
+	

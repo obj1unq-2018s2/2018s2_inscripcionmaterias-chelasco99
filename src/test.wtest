@@ -1,27 +1,26 @@
 import universidad.*
 import materias.*
+import carreras.*
 
 describe "universidad" {
 	
-	var estudiante1 = new Estudiante(materiasAprobadas = ["orga","intro"],
-		                             carrera = ["programacion"],
-		                             cantidadDeCreditos = 120 )
-		                             
-    var orga = new Materia(curso = [],
-    					   materiasCorrelativas = [],
-    					   carreraALaQuePertenece = "programacion",
-    					   creditos = 10,
-    					   anioQuePertenece = 1 )
- 
-    var intro = new Materia(curso = [],
-    					    materiasCorrelativas = [],
-    					    carreraALaQuePertenece = "programacion",
-    					    creditos = 10,
-    					    anioQuePertenece = 1 )
+	// Carrera
+	var tpi = new Carrera ( materias = [] )
+	var sociologia = new Carrera ( materias = [] )
+	
+	
+	// Materia	                             
+    var orga = new Materia(materiasCorrelativas = [],carrera = tpi, curso = [], creditos = 10, anio = 1 )
     
-    
+               	                       	                   	                       	                   
+	// Estudiante	
+	var nacho = new Estudiante( carreras =[tpi,sociologia],materiasAprobadas =[orga], cantidadDeCreditos = 150 )
+	
+	
+  
 test "testX" {
-	assert.that()
+	assert.that(nacho.estaIncripto(orga))
 }
 
+     
 }

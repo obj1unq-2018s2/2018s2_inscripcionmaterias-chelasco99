@@ -2,50 +2,33 @@ import universidad.*
 	
 class Materia {
 	var property materiasCorrelativas = []
-	var property carreraALaQuePertenece 
+	var property carrera
 	var property curso
 	var property creditos = 0
-	var property anioQuePertenece = 0
-	var property listaDeEspera = 0
+	var property anio = 0
 	
-	method tieneAprobadoLasCorrelativas(estudiante) {
-		return materiasCorrelativas.all { materias => estudiante.materiasAprobadas()}
+	method prerrequisitos(estudiante) = true	
+}
+
+
+class MateriaCorrelativa inherits Materia {
+	override method prerrequisitos(estudiante) {
+		return estudiante.materiasAprobadas().contains(materiasCorrelativas)
 	}
-	
-	method tieneCreditosSuficientes(estudiante) {
+}
+
+class MateriaConCreditos inherits Materia {
+	override method prerrequisitos(estudiante) {
 		return estudiante.cantidadDeCreditos() >= self.creditos()
 	}
-	
-	method aproboMateriasDelAnioAnterior(estudiante) {
-		return carreraALaQuePertenece.materiasConAnio(anioQuePertenece - 1)
-	}  
-	
-	method noTieneRequisito() {}
-	
-	
-	method cumpleConLosRequisitos()	
-	
 }	
 
-
-class MateriasCorrelativas inherits Materia {
-	override method cumpleConLosRequisitos() {	
-		return self.tieneAprobadoLasCorrelativas(self)	
+class MateriaPorAnio inherits Materia {
+	override method prerrequisitos(estudiante) {
+		return estudiante.materiasAprobadas().contains(carrera.materiasDeAnio(anio - 1))		
 	}
 }
 
-class MateriasConCreditos inherits Materia {
-	override method cumpleConLosRequisitos() {
-		return self.tieneCreditosSuficientes(self)		
-	}
-}
-
-class MateriasPorAnio inherits Materia {
-	override method cumpleConLosRequisitos() {	
-		return self.aproboMateriasDelAnioAnterior(self)	
-	}
-}
-
-class MateriasSinRequerimiento inherits Materia {
-	override method noTieneRequisito() {} 	
+class MateriaSinPrerrequisitos inherits Materia {
+	override method prerrequisitos(estudiante) = true
 }
