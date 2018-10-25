@@ -5,21 +5,23 @@ import carreras.*
 describe "universidad" {
 	
 	// Carrera
-	var tpi = new Carrera ( materias = [] )
+	var informatica = new Carrera ( materias = [] )
 	var sociologia = new Carrera ( materias = [] )
 	
 	
 	// Materia	                             
-    var orga = new Materia(materiasCorrelativas = [],carrera = tpi, curso = [], creditos = 10, anio = 1 )
+    var orga = new Materia(carrera = informatica, curso = [],cupo = 5, listaDeEspera = [] )
+    
+    
     
                	                       	                   	                       	                   
 	// Estudiante	
-	var nacho = new Estudiante( carreras =[tpi,sociologia],materiasAprobadas =[orga], cantidadDeCreditos = 150 )
+	var nacho = new Estudiante( carreras =[informatica],materiasAprobadas =[orga], cantidadDeCreditos = 150 )
 	
 	
   
 test "testX" {
-	assert.that(nacho.estaIncripto(orga))
+	assert.that(nacho.esDeLaCarrera(orga))
 }
 
      

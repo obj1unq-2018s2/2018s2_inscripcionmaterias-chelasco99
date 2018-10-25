@@ -4,11 +4,11 @@ class Estudiante {
 	var property cantidadDeCreditos = 0
 
    method puedeCursarMateria(materia) { return 
-      self.esDeSuCarrera(materia) and not self.aprobo(materia) and not self.estaIncripto(materia) and materia.prerrequisitos(self)
+      self.esDeLaCarrera(materia) and not self.aprobo(materia) and not self.estaIncripto(materia) and materia.prerrequisitos(self)
    }
    
-   method esDeSuCarrera(materia) {
-   	 return carreras.contains(materia.carrera())
+   method esDeLaCarrera(materia) {
+   	 return carreras.any { carrera => carrera ==  materia.carrera() }
    }
    
    method aprobo(materia) {
@@ -19,5 +19,13 @@ class Estudiante {
    	 return materia.curso().contains(self)
    }
    
-}	
-	
+   method aproboMateria(materiaAprobada) {
+  	 return materiasAprobadas.add(materiaAprobada).asSet()
+  }
+  
+   method quedoEnListaDeEspera(materia) {
+  	 return materia.curso().contains(self)
+  }
+  
+}
+
