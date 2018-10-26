@@ -6,6 +6,7 @@ class Materia {
 	var property cupo
 	var property listaDeEspera
 	
+	
 	method prerrequisitos(estudiante) = true
 
 	
@@ -43,7 +44,7 @@ class Materia {
 class MateriaCorrelativa inherits Materia {
 	var property materiasCorrelativas = []
 	override method prerrequisitos(estudiante) {
-		return estudiante.materiasAprobadas().contains(materiasCorrelativas)
+		return materiasCorrelativas.all { materia => estudiante.materiasAprobadas().contains(materia) }
 	}
 }
 
@@ -65,10 +66,21 @@ class MateriaSinPrerrequisitos inherits Materia {
 	override method prerrequisitos(estudiante) = true
 }
 
-class MateriaAprobada {
+class MateriaAprobada inherits Materia {
 	var property materia
 	var property nota
-	
    
-}	
+}
+
+class MateriaPorOrdenDeLlegada inherits Materia {
+	method agregarAListaDeEspera(estudiante) {
+		 	if ( cupo < curso.size() ) {
+		 		listaDeEspera.add(estudiante)
+		 	} 
+		 			 
+		 }		
+	}
+
+
+	
 	

@@ -2,7 +2,7 @@ import universidad.*
 import materias.*
 import carreras.*
 
-describe "universidad" {
+describe "inscripcion materias" {
 	
 	// Carrera
 	var informatica = new Carrera ( materias = [] )
@@ -11,18 +11,30 @@ describe "universidad" {
 	
 	// Materia	                             
     var orga = new Materia(carrera = informatica, curso = [],cupo = 5, listaDeEspera = [] )
+    var epl = new Materia(carrera = informatica, curso = [informatica],cupo = 0, listaDeEspera = [] )
+    var objetos1 = new MateriaCorrelativa(carrera = informatica, curso = [],cupo = 5, listaDeEspera = [],materiasCorrelativas =[epl,orga] )
+   
     
-    
-    
-               	                       	                   	                       	                   
+		
 	// Estudiante	
 	var nacho = new Estudiante( carreras =[informatica],materiasAprobadas =[orga], cantidadDeCreditos = 150 )
-	
-	
-  
-test "testX" {
-	assert.that(nacho.esDeLaCarrera(orga))
+	var jose = new Estudiante( carreras =[informatica],materiasAprobadas =[], cantidadDeCreditos = 150 )
+			
+	     
+               	                       	                   	                       	                 	  
+test "estudiante se inscribe en materia que ya curso. Se rechaza" {
+	assert.notThat(nacho.puedeCursarMateria(orga))
 }
 
-     
+test "no puede cursar una materia con correlativas" {
+   assert.notThat(nacho.puedeCursarMateria(objetos1))
+  }
+  
+test "estudiante se puede inscribir pero no hay cupo" {
+	epl.inscribirAlumnoACurso(jose)
+	assert.equals([jose],epl.listaDeEspera())
+}
+ 
+   
+ 
 }

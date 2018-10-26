@@ -24,8 +24,11 @@ class Estudiante {
   }
   
    method quedoEnListaDeEspera(materia) {
-  	 return materia.curso().contains(self)
+  	 return materia.listaDeEspera().contains(self)
   }
   
+  method promedio() {
+  	return materiasAprobadas.sum { materia => materia.nota() } / materiasAprobadas.size()
+  }
 }
 
