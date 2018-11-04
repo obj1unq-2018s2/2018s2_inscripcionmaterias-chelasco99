@@ -5,12 +5,12 @@ import carreras.*
 describe "inscripcion materias" {
 	
 	// Carrera
-	var informatica = new Carrera ( materias = [] )
+	var informatica = new Carrera ( materias = [] ) // TODO Inicializar la lista vacía podría hacerse al definir el atrubto.
 	var sociologia = new Carrera ( materias = [] )
 	
 	
 	// Materia	                             
-    var orga = new Materia(carrera = informatica, curso = [],cupo = 5, listaDeEspera = [] )
+    var orga = new Materia(carrera = informatica, curso = [],cupo = 5, listaDeEspera = [] ) // TODO Acá hay una referencia cruzada, ¿quién garantiza la consistencia?
     var epl = new Materia(carrera = informatica, curso = [informatica],cupo = 0, listaDeEspera = [] )
     var objetos1 = new MateriaCorrelativa(carrera = informatica, curso = [],cupo = 5, listaDeEspera = [],materiasCorrelativas =[epl,orga] )
    

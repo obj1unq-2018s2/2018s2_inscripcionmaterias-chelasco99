@@ -10,9 +10,12 @@ class Carrera {
     
     method materiasQueSePuedeInscribir(estudiante) {
     	if ( self.estudiaLaCarrera(estudiante) ) {
+    		// TODO Falta el return
     		self.materias().filter { materia => materia.puedeCursarMateria(materia) }
     		
     	}
+    	
+    	// TODO Este método es una pregunta, no puede no tener un else el if.
     }
     
     method materiasQueEstaInscripto(estudiante) {
@@ -20,10 +23,12 @@ class Carrera {
     }
     
     method materiasEnListaDeEspera(estudiante) {
+    	// TODO Falla lógica, debería recorrer self.materias()
        return self.materiasQueEstaInscripto(estudiante).filter { materia => estudiante.quedoEnListaDeEspera(materia) }
     }
     
     method estudiaLaCarrera(estudiante) {
+    	// TODO Más fácil contains
     	return estudiante.carreras().any { carrera => carrera == self }
     }
 }	

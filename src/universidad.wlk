@@ -8,13 +8,15 @@ class Estudiante {
    }
    
    method esDeLaCarrera(materia) {
+   	// TODO Más fácil carreras.contains(materia.carrera())
    	 return carreras.any { carrera => carrera ==  materia.carrera() }
    }
    
-   method aprobo(materia) {
+   method aprobo(materia) { // TODO Acá confundis materia con materiaAprobada
    	return materiasAprobadas.contains(materia)
    }
    
+   // TODO La materia tiene la información para contestar esta pregunta, mejor sería que el método esté allá.
    method estaIncripto(materia) {
    	 return materia.curso().contains(self)
    }
@@ -23,6 +25,7 @@ class Estudiante {
   	 return materiasAprobadas.add(materiaAprobada).asSet()
   }
   
+   // TODO La materia tiene la información para contestar esta pregunta, mejor sería que el método esté allá.
    method quedoEnListaDeEspera(materia) {
   	 return materia.listaDeEspera().contains(self)
   }
